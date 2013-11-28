@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'bands',
 
     'south',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
