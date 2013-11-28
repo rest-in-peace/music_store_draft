@@ -11,8 +11,9 @@ from bands import views
 factory = APIRequestFactory()
 
 
-class TestBandView(TestCase):
+class TestBandListView(TestCase):
     def setUp(self):
+        mommy.make('bands.Band', name='Beatles')
         self.view = views.BandListAPIView.as_view()
 
     def test_list_band_view_should_return_200(self):
@@ -21,9 +22,22 @@ class TestBandView(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_it_should_return_a_list_of_bands(self):
-        mommy.make('bands.Band', name='Beatles')
-
         request = factory.get('/')
         response = self.view(request).render()
         self.assertEqual(response.data[0]['name'], 'Beatles')
 
+    def test_endpoint_should_contain_url_to_detail(self):
+        request = factory.get('/')
+        response = self.view(request).render()
+        self.assertEqual(response.data[0]['url'], 'http://testserver/bands/1/')
+
+
+class TestBandDetailView(TestCase):
+    def setUp(self):
+        mommy.make('bands.Band', name='Beatles')
+        self.view = views.BandDetailAPIView.as_view()
+
+    def test_band_detail_should_return_200(self):
+        request = factory.get('/')
+        response = self.view(request, pk=1).render()
+        self.assertEqual(response.status_code, 200)

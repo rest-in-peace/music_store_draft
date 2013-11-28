@@ -10,4 +10,8 @@ urlpatterns = patterns('',
         views.BandListAPIView.as_view(),
         name='band-list',
     ),
+    url(r'^(?P<pk>\d+)/$',
+        views.BandDetailAPIView.as_view(),
+        name='band-detail',
+    ),
 )
