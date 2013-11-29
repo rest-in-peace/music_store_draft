@@ -31,6 +31,14 @@ class TestBandListView(TestCase):
         response = self.view(request).render()
         self.assertEqual(response.data[0]['url'], 'http://testserver/bands/1/')
 
+    def test_endpoint_should_contain_ur_to_albums_from_band(self):
+        request = factory.get('/')
+        response = self.view(request, pk=1).render()
+        self.assertEqual(
+            response.data[0]['albums_url'],
+            'http://testserver/bands/1/albums/',
+        )
+
 
 class TestBandDetailView(TestCase):
     def setUp(self):
@@ -46,6 +54,19 @@ class TestBandDetailView(TestCase):
         request = factory.get('/')
         response = self.view(request, pk=1).render()
         self.assertEqual(response.data['url'], 'http://testserver/bands/1/')
+
+
+class TestBandAlbumListView(TestCase):
+    def setUp(self):
+        self.view = views.BandAlbumListAPIView.as_view()
+
+    def test_bandalbum_list_view_should_have_only_instances_from_band(self):
+        mommy.make('bands.Album')
+        album = mommy.make('bands.Album')
+
+        request = factory.get('/')
+        response = self.view(request, pk=album.band.pk).render()
+        self.assertEqual(len(response.data), 1)
 
 
 class TestSongListView(TestCase):

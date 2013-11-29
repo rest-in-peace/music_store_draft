@@ -3,3 +3,4 @@ South==0.8.4
 wsgiref==0.1.2
 djangorestframework==2.3.9
 model-mommy==1.2
+Pillow==2.2.1
