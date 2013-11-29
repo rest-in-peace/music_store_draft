@@ -1,3 +1,5 @@
 *.pyc
 music_store.sqlite3
 *.sw*
+media*
+static*
