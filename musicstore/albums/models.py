@@ -3,7 +3,7 @@
 from django.db import models
 
 
-class Albums(models.Model):
+class Album(models.Model):
     band = models.ForeignKey('bands.Band')
     
     title = models.CharField(max_length=255)
