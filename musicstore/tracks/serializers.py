@@ -5,7 +5,8 @@ from .models import Track
 
 
 class TrackListSerializer(serializers.ModelSerializer):
+    song_name = serializers.CharField(source='song.name', read_only=True)
 
     class Meta:
         model = Track
-        fields = ('price',)
+        fields = ('song_name', 'price')
