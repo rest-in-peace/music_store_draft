@@ -6,6 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^bands/', include('bands.urls')),
-    url(r'^albums/', include('albums.urls', namespace='albums')),
+    url(r'^albums/', include('albums.urls')),
+    url(r'^songs/', include('songs.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

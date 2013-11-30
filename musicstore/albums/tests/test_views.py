@@ -16,7 +16,7 @@ class TestAlbumListView(TestCase):
     def setUp(self):
         self.album = mommy.make('albums.Album', title='White Album')
         self.view = views.AlbumListAPIView.as_view()
-        self.url = reverse('albums:album-list')
+        self.url = reverse('album-list')
 
         request = factory.get('/')
         self.response = self.view(request).render()
@@ -45,7 +45,7 @@ class TestAlbumDetailView(TestCase):
     def setUp(self):
         self.album = mommy.make('albums.Album', title='White Album')
         self.view = views.AlbumRetrieveAPIView.as_view()
-        self.url = reverse('albums:album-detail', kwargs={'pk': self.album.pk})
+        self.url = reverse('album-detail', kwargs={'pk': self.album.pk})
 
         request = factory.get('/')
         self.response = self.view(request, pk=self.album.pk).render()

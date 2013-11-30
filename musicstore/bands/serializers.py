@@ -2,7 +2,7 @@
 
 from rest_framework import serializers
 
-from .models import Band, Song
+from .models import Band
 
 
 class BandSerializer(serializers.HyperlinkedModelSerializer):
@@ -13,8 +13,3 @@ class BandSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Band
         fields = ('url', 'name', 'description', 'albums_url')
-
-
-class SongSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Song

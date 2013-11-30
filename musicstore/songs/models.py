@@ -3,9 +3,10 @@
 from django.db import models
 
 
-class Band(models.Model):
+class Song(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
+    duration = models.PositiveIntegerField()
 
     def __unicode__(self):
         return self.name
+

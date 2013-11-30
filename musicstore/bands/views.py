@@ -2,7 +2,10 @@
 
 from rest_framework import generics
 
-from .models import Band, Song, Album
+from albums.models import Album
+from songs.models import Song
+
+from .models import Band
 from . import serializers
 
 
@@ -31,19 +34,3 @@ class BandAlbumListAPIView(generics.ListAPIView):
     def get_queryset(self):
         qs = super(BandAlbumListAPIView, self).get_queryset()
         return qs.filter(band=self.kwargs['pk'])
-
-
-class SongListAPIView(generics.ListAPIView):
-    '''
-    This API endpoint presents a list of songs.
-    '''
-    model = Song
-    serializer_class = serializers.SongSerializer
-
-
-class SongDetailAPIView(generics.RetrieveAPIView):
-    '''
-    This API endpoint presents a list of songs.
-    '''
-    model = Song
-    serializer_class = serializers.SongSerializer
