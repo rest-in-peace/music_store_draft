@@ -11,3 +11,5 @@ class Album(models.Model):
 
     date_released = models.DateField()
 
+    songs = models.ManyToManyField('songs.Song', through='tracks.Track')
+

@@ -61,3 +61,21 @@ class TestAlbumDetailView(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
+class TestAlbumTracksView(TestCase):
+
+    def setUp(self):
+        self.album = mommy.make('albums.Album', title='White Album')
+        self.tracks = mommy.make('tracks.Track', album=self.album, _quantity=5)
+        self.view = views.AlbumTracksAPIView.as_view()
+        self.url = reverse('album-detail', kwargs={'pk': self.album.pk})
+
+        request = factory.get('/')
+        self.response = self.view(request, pk=self.album.pk).render()
+
+    def test_should_return_200(self):
+        response = self.response
+        self.assertEqual(response.status_code, 200)
+
+        print response.data
+
+

@@ -42,9 +42,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'songs',
     'bands',
     'albums',
-    'songs',
+    'tracks',
 
     'south',
     'rest_framework',
