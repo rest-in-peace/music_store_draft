@@ -67,7 +67,7 @@ class TestAlbumTracksView(TestCase):
         self.album = mommy.make('albums.Album', title='White Album')
         self.tracks = mommy.make('tracks.Track', album=self.album, _quantity=5)
         self.view = views.AlbumTracksAPIView.as_view()
-        self.url = reverse('album-detail', kwargs={'pk': self.album.pk})
+        self.url = reverse('album-track-list', kwargs={'pk': self.album.pk})
 
         request = factory.get('/')
         self.response = self.view(request, pk=self.album.pk).render()
@@ -76,6 +76,10 @@ class TestAlbumTracksView(TestCase):
         response = self.response
         self.assertEqual(response.status_code, 200)
 
-        print response.data
+    def test_view_url(self):
+        url = self.url
+        response = client.get(url)
+
+        self.assertEqual(response.status_code, 200)
 
 

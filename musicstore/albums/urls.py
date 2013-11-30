@@ -14,4 +14,9 @@ urlpatterns = patterns('',
         views.AlbumRetrieveAPIView.as_view(),
         name='album-detail',
     ),
+
+    url(r'^(?P<pk>\d+)/tracks/$',
+        views.AlbumTracksAPIView.as_view(),
+        name='album-track-list',
+    ),
 )
