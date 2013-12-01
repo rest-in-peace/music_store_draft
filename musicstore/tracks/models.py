@@ -15,3 +15,14 @@ class Track(models.Model):
 
     class Meta:
         unique_together = ('song', 'album')
+
+    def __unicode__(self):
+        return self.track_file
+
+    # Some random value here since we do not have purchase system yet
+    # http://xkcd.com/221/
+    def was_bought(self):
+        return 4
+
+    def download_count(self):
+        return 4

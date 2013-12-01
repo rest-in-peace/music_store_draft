@@ -66,3 +66,9 @@ class TestTrackDetailView(TestCase):
         self.assertEqual(
             self.response.data['song'], 'http://testserver/songs/1/'
         )
+
+    def test_endpoint_should_have_was_bought_field(self):
+        self.assertEqual(self.response.data['was_bought'], 4)
+
+    def test_endpoint_should_have_was_download_count_field(self):
+        self.assertEqual(self.response.data['download_count'], 4)
