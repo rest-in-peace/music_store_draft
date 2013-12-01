@@ -8,5 +8,6 @@ urlpatterns = patterns('',
     url(r'^bands/', include('bands.urls')),
     url(r'^albums/', include('albums.urls')),
     url(r'^songs/', include('songs.urls')),
+    url(r'^tracks/', include('tracks.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

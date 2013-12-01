@@ -11,7 +11,7 @@ class Track(models.Model):
 
     price = models.DecimalField(max_digits=4, decimal_places=2)
 
-    track_file = models.FileField(upload_to='tracks')
+    track_file = models.FileField(upload_to='up/tracks')
 
     class Meta:
         unique_together = ('song', 'album')

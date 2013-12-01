@@ -19,5 +19,8 @@ migrate: clean deps
 run: clean
 	@$(django_folder) python manage.py runserver
 
+flake8:
+	@flake8 . --exclude='.*migrations' --ignore=E124,E128
+
 help:
 	grep '^[^#[:space:]].*:' Makefile | awk -F ":" '{print $$1}'
