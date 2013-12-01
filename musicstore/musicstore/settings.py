@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'bands',
     'albums',
     'tracks',
+    'comments',
 
     'south',
     'rest_framework',
