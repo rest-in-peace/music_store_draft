@@ -9,7 +9,7 @@ from .models import Band
 from . import serializers
 
 
-class BandListAPIView(generics.ListAPIView):
+class BandListAPIView(generics.ListCreateAPIView):
     '''
     This API endpoint presents a list of bands.
     '''
