@@ -22,4 +22,3 @@ class SongDetailAPIView(generics.RetrieveAPIView):
     '''
     model = Song
     serializer_class = serializers.SongSerializer
-

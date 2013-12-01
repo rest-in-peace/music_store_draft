@@ -1,14 +1,19 @@
 # coding: utf-8
 
+from os.path import join, dirname, abspath
+from decimal import Decimal
+
 from django.test import TestCase
 
 from rest_framework.test import APIRequestFactory
+from rest_framework.reverse import reverse
 from model_mommy import mommy
 
 from tracks import views
 
 
 factory = APIRequestFactory()
+MEDIA_PATH = join(dirname(abspath(__file__)), 'media/')
 
 
 class TestTrackListView(TestCase):
@@ -44,6 +49,21 @@ class TestTrackListView(TestCase):
         self.assertEqual(
             response.data[0]['url'], 'http://testserver/tracks/2/',
         )
+
+    def test_create_track(self):
+        album = mommy.make('albums.Album', title='While Album')
+        song = mommy.make('songs.Song', name='Dear Prudence')
+
+        album_url = reverse('album-detail', kwargs={'pk': album.pk})
+        song_url = reverse('song-detail', kwargs={'pk': song.pk})
+
+        data = {
+            'song': song_url, 'album': album_url, 'price': '0.99',
+            'track_file': open(join(MEDIA_PATH, 'mock-file.mp3')),
+        }
+        request = factory.post('/', data=data)
+        response = self.view(request).render()
+        self.assertEqual(response.status_code, 201)
 
 
 class TestTrackDetailView(TestCase):
