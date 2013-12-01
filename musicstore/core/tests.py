@@ -20,5 +20,6 @@ class TestAPIRoot(TestCase):
                 'bands': 'http://testserver/bands/',
                 'albums': 'http://testserver/albums/',
                 'songs': 'http://testserver/songs/',
+                'users': 'http://testserver/users/',
             }
         )

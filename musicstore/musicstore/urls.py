@@ -11,5 +11,6 @@ urlpatterns = patterns('',
     url(r'^songs/', include('songs.urls')),
     url(r'^tracks/', include('tracks.urls')),
     url(r'^comments/', include('comments.urls')),
+    url(r'^users/', include('account.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
