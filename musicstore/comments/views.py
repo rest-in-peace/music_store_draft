@@ -5,6 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from rest_framework import generics
 
 from .models import Comment
+from . import serializers
 
 
 class BaseCommentListAPIView(generics.ListAPIView):
@@ -15,6 +16,7 @@ class BaseCommentListAPIView(generics.ListAPIView):
     Subsclass should implement ctype_model attribute
     '''
     model = Comment
+    serializer_class = serializers.CommentSerializer
 
     @property
     def ctype_model(self):
@@ -26,3 +28,11 @@ class BaseCommentListAPIView(generics.ListAPIView):
         qs = super(BaseCommentListAPIView, self).get_queryset()
         qs = qs.filter(content_type=ctype).filter(object_id=self.kwargs['pk'])
         return qs
+
+
+class CommentDetailAPIView(generics.RetrieveAPIView):
+    '''
+    This API endpoint presents a Comment.
+    '''
+    model = Comment
+    serializer_class = serializers.CommentSerializer
