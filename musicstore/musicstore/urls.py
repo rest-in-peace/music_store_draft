@@ -5,6 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^$', 'core.views.api_root'),
     url(r'^bands/', include('bands.urls')),
     url(r'^albums/', include('albums.urls')),
     url(r'^songs/', include('songs.urls')),
