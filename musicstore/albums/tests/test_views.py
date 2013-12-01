@@ -83,3 +83,15 @@ class TestAlbumTracksView(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
+class TestAlbumCommentListView(TestCase):
+    def setUp(self):
+        self.album = mommy.make('albums.Album')
+        self.view = views.AlbumCommentListAPIView.as_view()
+
+    def test_endpoint_should_only_list_comments_from_album_pk(self):
+        mommy.make_recipe('comments.album_comment', object_id=self.album.pk)
+        mommy.make_recipe('comments.album_comment')
+
+        request = factory.get('/')
+        response = self.view(request, pk=self.album.pk).render()
+        self.assertEqual(len(response.data), 1)
