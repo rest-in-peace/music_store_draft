@@ -26,6 +26,13 @@ class TestSongListView(TestCase):
         response = self.view(request).render()
         self.assertEqual(response.data[0]['url'], 'http://testserver/songs/1/')
 
+    def test_create_song(self):
+        data = {'name': 'Michelle', 'duration': 100}
+        request = factory.post('/', data=data, format='json')
+        response = self.view(request).render()
+        self.assertEqual(response.status_code, 201)
+
+
 
 class TestSongDetailView(TestCase):
     def setUp(self):
