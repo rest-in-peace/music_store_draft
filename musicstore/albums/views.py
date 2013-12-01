@@ -9,7 +9,7 @@ from albums.serializers import AlbumSerializer, AlbumTracksSerializer
 from comments.views import BaseCommentListAPIView
 
 
-class AlbumListAPIView(generics.ListAPIView):
+class AlbumListAPIView(generics.ListCreateAPIView):
     model = Album
     serializer_class = AlbumSerializer
 

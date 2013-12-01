@@ -5,7 +5,7 @@ from django.db import models
 
 class Album(models.Model):
     band = models.ForeignKey('bands.Band')
-    
+
     title = models.CharField(max_length=255)
     cover = models.ImageField(upload_to='covers')
 

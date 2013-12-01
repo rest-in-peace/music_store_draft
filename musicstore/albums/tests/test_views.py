@@ -1,3 +1,6 @@
+# coding: utf-8
+
+from os.path import join, dirname, abspath
 
 from django.test import TestCase
 from django.core.urlresolvers import reverse
@@ -10,6 +13,8 @@ from albums import views
 
 factory = APIRequestFactory()
 client = APIClient()
+IMG_PATH = join(dirname(abspath(__file__)), 'img/')
+
 
 class TestAlbumListView(TestCase):
 
@@ -38,6 +43,17 @@ class TestAlbumListView(TestCase):
         self.assertEquals(type(response.data), list)
 
         self.assertEquals(response.data[0]['title'], album.title)
+
+    def test_create_album(self):
+        data = {
+            'band': self.album.band.pk, 'title': 'abbey road',
+            'date_released': '2013-11-30',
+            'cover': open(join(IMG_PATH, 'mock-img.jpeg')),
+        }
+        request = factory.post('/', data=data)
+        response = self.view(request).render()
+        self.assertEqual(response.status_code, 201)
+        self.assertIn('covers/mock-img', response.data['cover'])
 
 
 class TestAlbumDetailView(TestCase):
