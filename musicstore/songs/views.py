@@ -16,7 +16,7 @@ class SongListAPIView(generics.ListCreateAPIView):
     serializer_class = serializers.SongSerializer
 
 
-class SongDetailAPIView(generics.RetrieveAPIView):
+class SongDetailAPIView(generics.RetrieveUpdateAPIView):
     '''
     This API endpoint presents a list of songs.
     '''

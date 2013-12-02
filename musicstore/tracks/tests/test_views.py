@@ -92,3 +92,15 @@ class TestTrackDetailView(TestCase):
 
     def test_endpoint_should_have_was_download_count_field(self):
         self.assertEqual(self.response.data['download_count'], 4)
+
+    def test_update_track(self):
+        album_url = reverse('album-detail', kwargs={'pk': self.track.album.pk})
+        song_url = reverse('song-detail', kwargs={'pk': self.track.song.pk})
+
+        data = {
+            'song': song_url, 'album': album_url, 'price': '1.0',
+            'track_file': open(join(MEDIA_PATH, 'mock-file.mp3')),
+        }
+        request = factory.put('/', data=data)
+        response = self.view(request, pk=self.track.pk).render()
+        self.assertEqual(response.status_code, 200)

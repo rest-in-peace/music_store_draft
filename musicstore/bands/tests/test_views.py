@@ -58,10 +58,17 @@ class TestBandDetailView(TestCase):
         response = self.view(request, pk=1).render()
         self.assertEqual(response.status_code, 200)
 
-    def test_band_detail_shourl_contain_url_to_detail_itself(self):
+    def test_band_detail_should_contain_url_to_detail_itself(self):
         request = factory.get('/')
         response = self.view(request, pk=1).render()
         self.assertEqual(response.data['url'], 'http://testserver/bands/1/')
+
+    def test_update_instance(self):
+        request = factory.put(
+            '/', data={'name': 'metallica', 'description':''},
+        )
+        response = self.view(request, pk=1).render()
+        self.assertEqual(response.status_code, 200)
 
 
 class TestBandAlbumListView(TestCase):

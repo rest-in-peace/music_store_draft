@@ -33,7 +33,6 @@ class TestSongListView(TestCase):
         self.assertEqual(response.status_code, 201)
 
 
-
 class TestSongDetailView(TestCase):
     def setUp(self):
         mommy.make('songs.Song', name='Yes it is')
@@ -48,3 +47,8 @@ class TestSongDetailView(TestCase):
         request = factory.get('/')
         response = self.view(request, pk=1).render()
         self.assertEqual(response.data['url'], 'http://testserver/songs/1/')
+
+    def test_update_song(self):
+        request = factory.put('/', data={'name': 'Yes it is', 'duration': 60})
+        response = self.view(request, pk=1).render()
+        self.assertEqual(response.status_code, 200)

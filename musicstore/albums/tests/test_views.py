@@ -76,6 +76,16 @@ class TestAlbumDetailView(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
+    def test_update_album(self):
+        data = {
+            'band': self.album.band.pk, 'title': 'Revolver',
+            'date_released': '1970-11-30',
+            'cover': open(join(IMG_PATH, 'mock-img.jpeg')),
+        }
+        request = factory.put('/', data=data)
+        response = self.view(request, pk=1).render()
+        self.assertEqual(response.status_code, 200)
+
 
 class TestAlbumTracksView(TestCase):
 

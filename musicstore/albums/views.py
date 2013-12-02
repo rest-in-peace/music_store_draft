@@ -14,7 +14,7 @@ class AlbumListAPIView(generics.ListCreateAPIView):
     serializer_class = AlbumSerializer
 
 
-class AlbumRetrieveAPIView(generics.RetrieveAPIView):
+class AlbumRetrieveAPIView(generics.RetrieveUpdateAPIView):
     model = Album
     serializer_class = AlbumSerializer
 

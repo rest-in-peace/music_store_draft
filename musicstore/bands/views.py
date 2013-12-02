@@ -17,7 +17,7 @@ class BandListAPIView(generics.ListCreateAPIView):
     serializer_class = serializers.BandSerializer
 
 
-class BandDetailAPIView(generics.RetrieveAPIView):
+class BandDetailAPIView(generics.RetrieveUpdateAPIView):
     '''
     This API endpoint presents a bands.
     '''

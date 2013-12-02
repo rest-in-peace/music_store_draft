@@ -14,7 +14,7 @@ class TrackListAPIView(generics.ListCreateAPIView):
     serializer_class = serializers.TrackSerializer
 
 
-class TrackDetailAPIView(generics.RetrieveAPIView):
+class TrackDetailAPIView(generics.RetrieveUpdateAPIView):
     '''
     This API endpoint presents a tracks.
     '''
