@@ -14,4 +14,5 @@ def api_root(request, format=None):
         'albums': reverse('album-list', request=request),
         'bands': reverse('band-list', request=request),
         'songs': reverse('song-list', request=request),
+        'users': reverse('user-create', request=request),
     })
