@@ -16,6 +16,10 @@ class TestBandListView(TestCase):
         mommy.make('bands.Band', name='Beatles')
         self.view = views.BandListAPIView.as_view()
 
+        self.data = {
+            'name': 'kraftwerk', 'description': 'German electronic music band',
+        }
+
     def test_list_band_view_should_return_200(self):
         request = factory.get('/')
         response = self.view(request).render()
@@ -39,6 +43,10 @@ class TestBandListView(TestCase):
             'http://testserver/bands/1/albums/',
         )
 
+    def test_create_new_band(self):
+        request = factory.post('/', data=self.data, format='json')
+        response = self.view(request).render()
+        self.assertEqual(response.status_code, 201)
 
 class TestBandDetailView(TestCase):
     def setUp(self):
@@ -50,10 +58,17 @@ class TestBandDetailView(TestCase):
         response = self.view(request, pk=1).render()
         self.assertEqual(response.status_code, 200)
 
-    def test_band_detail_shourl_contain_url_to_detail_itself(self):
+    def test_band_detail_should_contain_url_to_detail_itself(self):
         request = factory.get('/')
         response = self.view(request, pk=1).render()
         self.assertEqual(response.data['url'], 'http://testserver/bands/1/')
+
+    def test_update_instance(self):
+        request = factory.put(
+            '/', data={'name': 'metallica', 'description':''},
+        )
+        response = self.view(request, pk=1).render()
+        self.assertEqual(response.status_code, 200)
 
 
 class TestBandAlbumListView(TestCase):

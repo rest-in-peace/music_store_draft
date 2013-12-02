@@ -6,7 +6,7 @@ from .models import Track
 from . import serializers
 
 
-class TrackListAPIView(generics.ListAPIView):
+class TrackListAPIView(generics.ListCreateAPIView):
     '''
     This API endpoint presents a list of tracks.
     '''
@@ -14,7 +14,7 @@ class TrackListAPIView(generics.ListAPIView):
     serializer_class = serializers.TrackSerializer
 
 
-class TrackDetailAPIView(generics.RetrieveAPIView):
+class TrackDetailAPIView(generics.RetrieveUpdateAPIView):
     '''
     This API endpoint presents a tracks.
     '''

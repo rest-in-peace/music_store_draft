@@ -8,7 +8,7 @@ from .models import Song
 from . import serializers
 
 
-class SongListAPIView(generics.ListAPIView):
+class SongListAPIView(generics.ListCreateAPIView):
     '''
     This API endpoint presents a list of songs.
     '''
@@ -16,10 +16,9 @@ class SongListAPIView(generics.ListAPIView):
     serializer_class = serializers.SongSerializer
 
 
-class SongDetailAPIView(generics.RetrieveAPIView):
+class SongDetailAPIView(generics.RetrieveUpdateAPIView):
     '''
     This API endpoint presents a list of songs.
     '''
     model = Song
     serializer_class = serializers.SongSerializer
-
