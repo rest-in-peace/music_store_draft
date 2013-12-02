@@ -53,6 +53,7 @@ INSTALLED_APPS = (
 
     'south',
     'rest_framework',
+    'gunicorn',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -98,3 +99,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = root('../media')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+}
