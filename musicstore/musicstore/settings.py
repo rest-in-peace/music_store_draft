@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 from os.path import join, abspath, dirname
 
+import dj_database_url
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 here = lambda *x: join(abspath(dirname(__file__)), *x)
@@ -71,10 +73,9 @@ WSGI_APPLICATION = 'musicstore.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'music_store.sqlite3'),
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///{0}'.format(os.path.join(BASE_DIR, 'music_store.sqlite3')),
+    )
 }
 
 # Internationalization
