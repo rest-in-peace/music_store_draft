@@ -13,7 +13,7 @@ from tracks import views
 
 
 factory = APIRequestFactory()
-MEDIA_PATH = join(dirname(abspath(__file__)), 'media/')
+MEDIA_PATH = join(dirname(abspath(__file__)), 'test_media/')
 
 
 class TestTrackListView(TestCase):
