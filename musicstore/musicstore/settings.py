@@ -27,9 +27,8 @@ root = lambda *x: join(abspath(PROJECT_ROOT), *x)
 SECRET_KEY = '-b5!%5l4+ux6-0qewgwq%qnp#oh0h^6+en=zhb)&@&z8n@w!8t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
+DEBUG = bool(int(os.environ.get('DJANGO_DEBUG', 1)))
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -98,7 +97,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = root('../media')
+MEDIA_ROOT = root('media')
 
 
 LOGGING = {
