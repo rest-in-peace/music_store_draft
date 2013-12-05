@@ -22,5 +22,17 @@ run: clean
 flake8:
 	@flake8 . --exclude='.*migrations' --ignore=E124,E128
 
+remote_migrate:
+	@heroku run python musicstore/manage.py syncdb --noinput
+	@heroku run python musicstore/manage.py migrate
+
+collectstatic:
+	@heroku run python musicstore/manage.py collectstatic --noinput
+
+heroku:
+	@git push heroku master
+
+deploy: heroku remote_migrate collectstatic
+
 help:
 	grep '^[^#[:space:]].*:' Makefile | awk -F ":" '{print $$1}'
