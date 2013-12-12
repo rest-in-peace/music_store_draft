@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Album(models.Model):
-    band = models.ForeignKey('bands.Band')
+    band = models.ForeignKey('bands.Band', related_name='albums')
 
     title = models.CharField(max_length=255)
     cover = models.ImageField(upload_to='covers')

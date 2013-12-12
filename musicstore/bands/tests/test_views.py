@@ -50,7 +50,7 @@ class TestBandListView(TestCase):
 
 class TestBandDetailView(TestCase):
     def setUp(self):
-        mommy.make('bands.Band', name='Beatles')
+        self.band = mommy.make('bands.Band', name='Beatles')
         self.view = views.BandDetailAPIView.as_view()
 
     def test_band_detail_should_return_200(self):
@@ -69,6 +69,21 @@ class TestBandDetailView(TestCase):
         )
         response = self.view(request, pk=1).render()
         self.assertEqual(response.status_code, 200)
+
+    def test_band_detail_response_data(self):
+        band = self.band
+
+        mommy.make('albums.Album', band=band, _quantity=4)
+
+        request = factory.get('/')
+        response = self.view(request, pk=1).render()
+
+        data = response.data
+
+        self.assertIn('albums', data)
+        self.assertEquals(len(data['albums']), 4)
+        self.assertIn('title', data['albums'][0])
+        self.assertIn('url', data['albums'][0])
 
 
 class TestBandAlbumListView(TestCase):

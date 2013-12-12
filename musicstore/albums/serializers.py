@@ -17,3 +17,9 @@ class AlbumTracksSerializer(serializers.ModelSerializer):
     class Meta:
         model = Album
         fields = ('title', 'tracks',)
+
+
+class BandAlbumSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Album
+        fields = ('url', 'title')
