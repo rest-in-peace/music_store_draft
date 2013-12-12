@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'tracks',
     'comments',
     'account',
+    'purchases',
 
     'south',
     'rest_framework',

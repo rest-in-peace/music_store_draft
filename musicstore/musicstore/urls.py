@@ -13,5 +13,6 @@ urlpatterns = patterns('',
     url(r'^tracks/', include('tracks.urls')),
     url(r'^comments/', include('comments.urls')),
     url(r'^users/', include('account.urls')),
+    url(r'^purchases/', include('purchases.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
