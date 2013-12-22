@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "bands.band", "fields": {"name": "Beatles", "description": ""}}, {"pk": 2, "model": "bands.band", "fields": {"name": "Momboj\u00f3", "description": ""}}, {"pk": 3, "model": "bands.band", "fields": {"name": "import this", "description": "Nossa banda!"}}]
